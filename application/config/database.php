@@ -64,11 +64,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
+	'hostname' => 'ec2-54-243-132-114.compute-1.amazonaws.com',
+	'username' => 'hyxetxetzkemdd',
+	'password' => 'mpj0padfZbTPKDb0j--Nh3C2ha',
+	'database' => 'dbkufa0lnp5a3v',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => TRUE,
