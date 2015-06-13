@@ -27,3 +27,5 @@ class Welcome extends CI_Controller {
 			echo $row->first_name;
 			echo " ";
 		}
+	}
+}
