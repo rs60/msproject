@@ -207,7 +207,10 @@ class Welcome extends CI_Controller {
 		//$keywords = preg_split("/[\s,]+/", $_GET['q']);
 		//$response = http_get("api.openweathermap.org/data/2.5/weather?q=dhaka", array("timeout"=>1), $weather);
 		//echo $weather;
-		echo $ans;
+		//echo $ans;
+		$data = array( 'answer' => $ans);
+		echo json_encode( $data );
+		
 		//echo $result;
 	}
 }
