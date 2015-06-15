@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		//$this->load->view('welcome_message');
-		echo "hello";
+		echo "hola";
 		//return;
 		
 		//$query = $this->db->get('employees');
@@ -80,4 +80,134 @@ class Welcome extends CI_Controller {
 		
         
     }
+	
+	
+	function weather()
+	{
+	
+		$keywords = preg_split("/[\s,?]+/", $_GET['q']);
+		$id;
+		$main_weather="";
+		$flag=false;
+		$city="";
+		$count = count($keywords);
+		$i=0;
+		foreach($keywords as $key)
+		{
+			$i++;
+		
+			if($key=="temperature"|| $key=="humidity" || ($key=="Rain" || $key == "Clouds" || $key=="Clear" ))
+			{
+				if($key=="temperature")
+				{
+					$id=1;
+				}
+				else if($key=="humidity")
+				{
+					$id=2;
+				}
+				else
+				{
+					$id=3;
+					$main_weather=$key;
+				}
+				
+			}
+			if($flag)
+			{
+				if($city!="")
+				{
+					if($i!=$count)
+					$city = $city."%20";
+				}
+				$city = $city.$key;
+			}
+			if($key=="in")
+			{
+				$flag=true;
+			}
+			
+			
+			
+		}
+		
+		//echo $city;
+		
+		
+		$url= "http://api.openweathermap.org/data/2.5/weather?q=".$city;
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url
+		
+		));
+		
+		$result = curl_exec($curl);
+		
+		$res = json_decode($result);
+		$ans ="noting";
+		
+		if($id==1)
+		{
+			$temp_kelvin = $res->main->temp;
+			$ans = $temp_kelvin-273.16;
+			
+			
+		}
+		else if($id==2)
+		{
+			$ans=$res->main->humidity;
+			
+		}
+		else if($id==3)
+		{
+			$rcc=$res->weather[0]->main;
+			if($rcc=="rain"||$rcc=="Rain")
+			{
+					if($main_weather=="Rain")
+					{
+						$ans="Yes";
+					}
+					else
+					{
+						$ans="No";
+					}
+			}
+			else if($rcc=="clouds"||$rcc=="Clouds")
+			{
+				
+					if($main_weather=="Clouds")
+					{
+						$ans="Yes";
+					}
+					else
+					{
+						$ans="No";
+					}
+			}
+			else if($rcc=="clear"||$rcc=="Clear")
+			{
+			
+					if($main_weather=="Clear")
+					{
+						$ans="Yes";
+					}
+					else
+					{
+						$ans="No";
+					}
+			}
+			else
+			{
+				$ans="No";
+			}
+		}
+	
+	
+		//$keywords = preg_split("/[\s,]+/", $_GET['q']);
+		//$response = http_get("api.openweathermap.org/data/2.5/weather?q=dhaka", array("timeout"=>1), $weather);
+		//echo $weather;
+		echo $ans;
+		//echo $result;
+	}
 }
