@@ -18,6 +18,7 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	 
 	public function index()
 	{
 		//$this->load->view('welcome_message');
@@ -30,6 +31,93 @@ class Welcome extends CI_Controller {
 			//echo $row->first_name;
 			//echo " ";
 		//}
+	}
+	
+	   function qa()
+    {
+	
+	
+		
+				
+		
+		$q = urlencode($_GET['q']);
+		$url= "http://quepy.machinalis.com/engine/get_query?question=".$q;
+		
+		
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url
+		
+		));
+		
+		$result = curl_exec($curl);
+		$res = json_decode($result);
+		$ans = "Your majesty! Jon Snow knows nothing! So do I!";
+		$spaquery = $res->queries[0]->query;
+		$target = $res->queries[0]->target;
+		$target = trim($target,"?");
+		
+		
+		if($spaquery!=null)
+		{
+			
+			$spaquery = urlencode($spaquery);
+			$url2= "http://dbpedia.org/sparql?query=".$spaquery."&format=json";
+		
+		
+			$curl2 = curl_init();
+			curl_setopt_array($curl2, array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => $url2
+			
+			));
+			
+			$result2 = curl_exec($curl2);
+			$res2 = json_decode($result2);
+			
+			
+			//echo $spaquery;	
+			
+			$lng="xml:lang";
+			$arr = $res2->results->bindings;
+			
+			$found=false;
+			if(count($arr)>1){
+					foreach($arr as $temp)
+					{
+						if($temp->$target->$lng == "en")
+						{
+							$ans = $temp->$target->value;
+							$found=true;
+							break;
+						}
+					}
+					if(!$found)
+					{
+						$ans = $arr[0]->$target->value;
+					}
+			}
+			else
+			{
+				if(count($arr)==1)
+				{
+					$ans = $arr[0]->$target->value;
+				}
+				
+			}
+			
+			//echo $result2;
+			
+		
+		}
+		
+		$data = array( 'answer' => $ans);
+		echo json_encode( $data );
+		
+		//echo $ans;
+				
+
 	}
 	
 	    function greetings()
@@ -151,7 +239,7 @@ class Welcome extends CI_Controller {
 		{
 			$temp_kelvin = $res->main->temp;
 			$ans = $temp_kelvin-273.16;
-			
+			$ans = $ans." C";
 			
 		}
 		else if($id==2)
