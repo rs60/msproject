@@ -21,11 +21,63 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		//$this->load->view('welcome_message');
-		$query = $this->db->get('employees');
-		foreach($query->result() as $row)
-		{
-			echo $row->first_name;
-			echo " ";
-		}
+		echo "hello";
+		//return;
+		
+		//$query = $this->db->get('employees');
+		//foreach($query->result() as $row)
+		//{
+			//echo $row->first_name;
+			//echo " ";
+		//}
 	}
+	
+	    function greetings()
+    {
+	
+		$keywords = preg_split("/[\s,]+/", $_GET['q']);
+		
+		$flag=false;
+		$flag2=false;
+		
+		foreach($keywords as $key)
+		{
+			if($key=="Hi!"|| $key=="Hello!" || $key=="Good" || ($key=="evening!" || $key == "morning!" || $key=="night!" ))
+			{
+				if($key == "Good")
+				{
+					$flag2=true;
+				}
+				else if($flag2 && ($key=="evening!" || $key == "morning!" || $key=="night!" ))
+				{
+					$flag=true;
+						break;
+				}
+				else if($key=="Hi!"|| $key=="Hello!")
+				{
+						$flag=true;
+						break;
+				}
+				
+			}
+			
+		}
+		
+		
+		$ans="Kitty I can't understand you. Please ask me again...";
+		if($flag)
+		{
+			$ans="Hello, Kitty! I am pleased to meet with you.";
+		}
+		
+		$data = array( 'answer' => $ans);
+		echo json_encode( $data );
+		
+		//$this->load->view('print_msg',$data,TRUE);
+		return;
+		
+		
+		
+        
+    }
 }
