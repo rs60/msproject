@@ -124,26 +124,29 @@ class Welcome extends CI_Controller {
 	    function greetings()
     {
 	
-		$keywords = preg_split("/[\s,]+/", $_GET['q']);
+		$keywords = preg_split("/[\s,?]+/", $_GET['q']);
 		
 		$flag=false;
 		$flag2=false;
+		$ans="Kitty I can't understand you. Please ask me again...";
 		
 		foreach($keywords as $key)
 		{
-			if($key=="Hi!"|| $key=="Hello!" || $key=="Good" || ($key=="evening!" || $key == "morning!" || $key=="night!" ))
+			if($key=="Hi!"|| $key=="Hello!" || $key=="Good"  || $key=="good"|| ($key=="evening!" || $key=="Evening!" || $key == "morning!" || $key=="Morning!" || $key=="night!" || $key=="Night!"  ))
 			{
-				if($key == "Good")
+				if($key == "Good"|| $key=="good")
 				{
 					$flag2=true;
 				}
-				else if($flag2 && ($key=="evening!" || $key == "morning!" || $key=="night!" ))
+				else if($flag2 && ($key=="evening!" || $key=="Evening!" || $key == "morning!" || $key=="Morning!" || $key=="night!" || $key=="Night!" ))
 				{
+					$ans = "Hello, Kitty! Good ".$key." I am pleased to meet with you.";
 					$flag=true;
 						break;
 				}
 				else if($key=="Hi!"|| $key=="Hello!")
 				{
+						$ans = "Hello, Kitty! I am pleased to meet with you. How Are You";
 						$flag=true;
 						break;
 				}
@@ -153,11 +156,7 @@ class Welcome extends CI_Controller {
 		}
 		
 		
-		$ans="Kitty I can't understand you. Please ask me again...";
-		if($flag)
-		{
-			$ans="Hello, Kitty! I am pleased to meet with you.";
-		}
+		
 		
 		$data = array( 'answer' => $ans);
 		echo json_encode( $data );
