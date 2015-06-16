@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 	
-		<p>Ask from the questions below</p>
+		<p>Ask from the questions below. (3 example questions are attached here. You can ask your own question by changing the corresponding url.)</p>
 		<br>
 		<br>
 		<p>Question 1 (Greetings)</p>
@@ -84,8 +84,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<br>
 		<p>Question 3 (Any Question)</p>
-		<a href="https://pure-badlands-9772.herokuapp.com/index.php/Welcome/qa?q=what is the population in India?">Ask</a>
+		<a href="https://pure-badlands-9772.herokuapp.com/index.php/Welcome/qa?q=who is Lionel Messi?">Ask</a><br><br>
 		
+		<p>The query format is like below:</p>
+		
+		<p>1. https://pure-badlands-9772.herokuapp.com/index.php/Welcome/greetings?q='Your question'</p>
+		
+		<p>2. https://pure-badlands-9772.herokuapp.com/index.php/Welcome/weather?q='Your question'</p>
+		
+		<p>3. https://pure-badlands-9772.herokuapp.com/index.php/Welcome/qa?q='Your question'</p>
 		<br>
 		<br>
 
