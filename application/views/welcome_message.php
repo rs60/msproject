@@ -68,21 +68,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+	<h1>Hello Kitty... Welcome to the planet Earth!!!</h1>
 
 	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+	
+		<p>Ask from the questions below</p>
+		<br>
+		<br>
+		<p>Question 1 (Greetings)</p>
+		<a href="https://pure-badlands-9772.herokuapp.com/index.php/Welcome/greetings?q=Hi! How are you?">Ask</a>
+		
+		<br>
+		<p>Question 2 (Weather)</p>
+		<a href="https://pure-badlands-9772.herokuapp.com/index.php/Welcome/weather?q=what is the temperature in dhaka?">Ask</a>
+		
+		<br>
+		<p>Question 3 (Any Question)</p>
+		<a href="https://pure-badlands-9772.herokuapp.com/index.php/Welcome/qa?q=what is the population in India?">Ask</a>
+		
+		<br>
+		<br>
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+		
 	</div>
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	
 </div>
 
 </body>
