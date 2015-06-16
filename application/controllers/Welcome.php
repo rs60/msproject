@@ -124,7 +124,7 @@ class Welcome extends CI_Controller {
 	    function greetings()
     {
 	
-		$keywords = preg_split("/[\s,?]+/", $_GET['q']);
+		$keywords = preg_split("/[\s,?!]+/", $_GET['q']);
 		
 		$flag=false;
 		$flag2=false;
@@ -132,19 +132,19 @@ class Welcome extends CI_Controller {
 		
 		foreach($keywords as $key)
 		{
-			if($key=="Hi!"|| $key=="Hello!" || $key=="Good"  || $key=="good"|| ($key=="evening!" || $key=="Evening!" || $key == "morning!" || $key=="Morning!" || $key=="night!" || $key=="Night!"  ))
+			if($key=="Hi"|| $key=="Hello" || $key=="Good"  || $key=="good"|| ($key=="evening" || $key=="Evening" || $key == "morning" || $key=="Morning" || $key=="night" || $key=="Night"  ))
 			{
 				if($key == "Good"|| $key=="good")
 				{
 					$flag2=true;
 				}
-				else if($flag2 && ($key=="evening!" || $key=="Evening!" || $key == "morning!" || $key=="Morning!" || $key=="night!" || $key=="Night!" ))
+				else if($flag2 && ($key=="evening" || $key=="Evening" || $key == "morning" || $key=="Morning" || $key=="night" || $key=="Night" ))
 				{
 					$ans = "Hello, Kitty! Good ".$key." I am pleased to meet with you.";
 					$flag=true;
 						break;
 				}
-				else if($key=="Hi!"|| $key=="Hello!")
+				else if($key=="Hi"|| $key=="Hello")
 				{
 						$ans = "Hello, Kitty! I am pleased to meet with you. How Are You";
 						$flag=true;
