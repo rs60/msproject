@@ -184,7 +184,7 @@ class Welcome extends CI_Controller {
 		{
 			$i++;
 		
-			if($key=="temperature"|| $key=="humidity" || ($key=="Rain" || $key == "Clouds" || $key=="Clear" ))
+			if($key=="temperature"|| $key=="humidity" || ($key=="Rain"|| $key == "rain" || $key == "Clouds" || $key == "clouds" || $key=="Clear" || $key == "clear" ))
 			{
 				if($key=="temperature")
 				{
@@ -252,7 +252,7 @@ class Welcome extends CI_Controller {
 			$rcc=$res->weather[0]->main;
 			if($rcc=="rain"||$rcc=="Rain")
 			{
-					if($main_weather=="Rain")
+					if($main_weather=="Rain"||$main_weather=="rain")
 					{
 						$ans="Yes";
 					}
@@ -264,7 +264,7 @@ class Welcome extends CI_Controller {
 			else if($rcc=="clouds"||$rcc=="Clouds")
 			{
 				
-					if($main_weather=="Clouds")
+					if($main_weather=="Clouds"||$main_weather=="clouds")
 					{
 						$ans="Yes";
 					}
@@ -276,7 +276,7 @@ class Welcome extends CI_Controller {
 			else if($rcc=="clear"||$rcc=="Clear")
 			{
 			
-					if($main_weather=="Clear")
+					if($main_weather=="Clear"||$main_weather=="clear")
 					{
 						$ans="Yes";
 					}
