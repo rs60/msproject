@@ -6,5 +6,5 @@
 </IfModule>
 
 RewriteEngine on
-        RewriteCond %{HTTP_HOST} ^https\:\/\/pure-badlands-9772\.herokuapp\.com\/index\.php\/Welcome\/$
-        RewriteRule ^/?$ "https\:\/\/pure-badlands-9772\.herokuapp\.com\/" [R=301,L]
+        RewriteCond %{HTTP_HOST} ^https\:\/\/pure-badlands-9772\.herokuapp\.com\/$
+        RewriteRule ^/?$ "https\:\/\/pure-badlands-9772\.herokuapp\.com\/index\.php\/Welcome\/" [R=301,L]
